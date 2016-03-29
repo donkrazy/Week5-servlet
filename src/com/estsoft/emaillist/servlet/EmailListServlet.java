@@ -57,7 +57,5 @@ public class EmailListServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(  "/WEB-INF/views/index.jsp"  );
 			rd.forward( request, response );
 		}
-		
-		
 	}
 }
