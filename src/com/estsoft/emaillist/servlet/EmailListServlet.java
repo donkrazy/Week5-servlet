@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.estsoft.db.MySQLWebDBConnection;
 import com.estsoft.emaillist.dao.EmailListDao;
 import com.estsoft.emaillist.vo.EmailListVo;
+import com.estsoft.web.WebUtil;
 
 @WebServlet("/el")
 public class EmailListServlet extends HttpServlet {
@@ -40,11 +41,10 @@ public class EmailListServlet extends HttpServlet {
 			EmailListDao dao = new EmailListDao( new MySQLWebDBConnection() );
 			dao.insert(vo);
 			
-			response.sendRedirect( "/emaillist2/el" );
+			WebUtil.redirect( request, response, "/emaillist2/el" );
 			
 		} else if( "form".equals( actionName ) ) {
-			RequestDispatcher rd = request.getRequestDispatcher(  "/WEB-INF/views/form.jsp"  );
-			rd.forward( request, response );			
+			WebUtil.forward(request, response, "/WEB-INF/views/form.jsp" );
 		} else {
 			// default action ( list, index )
 			EmailListDao dao = new EmailListDao( new MySQLWebDBConnection() );
@@ -54,8 +54,7 @@ public class EmailListServlet extends HttpServlet {
 			request.setAttribute( "list", list );
 			
 			// forwarding (request 확장, request dispatcher )
-			RequestDispatcher rd = request.getRequestDispatcher(  "/WEB-INF/views/index.jsp"  );
-			rd.forward( request, response );
+			WebUtil.forward(request, response, "/WEB-INF/views/index.jsp" );
 		}
 	}
 }
