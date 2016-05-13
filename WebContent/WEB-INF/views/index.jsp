@@ -12,11 +12,11 @@
 	<p>입력한 정보 내역입니다.</p>
 	<!-- 메일정보 리스트 -->
 	<%-- list에서 하나씩 빼서 테이블를 채운다--%>
-	<c:forEach items="${list }" var="vo">
+	<c:forEach items="${list }" var="vo" varStatus="status">
 		<table border="1" cellpadding="5" cellspacing="2">
 			<tr>
 				<td align=right>First name: </td>
-				<td>${vo.firstName }</td>
+				<td>${status.count } : ${status.index } : ${vo.firstName }</td>
 			</tr>
 			<tr>
 				<td align=right width="110">Last name: </td>
